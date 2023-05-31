@@ -22,18 +22,18 @@ const run = async () => {
 		const productCollection = db.collection('product');
 
 		app.get('/products', async (req, res) => {
-			const text = req.query.text;
-
+			// const text = req.query.text;
+			// productCollection.createIndex({ model: 'text' });
 
 			let query = {};
-			if (text.length) {
-				query = {
-					$text: {
-						$search: text,
-						$caseSensitive: false,
-					},
-				};
-			}
+			// if (text.length) {
+			// 	query = {
+			// 		$text: {
+			// 			$search: text,
+			// 			$caseSensitive: false,
+			// 		},
+			// 	};
+			// }
 
 			const cursor = productCollection.find(query);
 			const product = await cursor.toArray();
