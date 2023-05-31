@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductCard from '../../components/ProductCard';
 import { clearFilters, toggleBrand, toggleStock } from '../../redux/actions/filterActions';
+import fetchProductData from '../../redux/thunk/fetchProductData';
 
 const Home = () => {
-	const [products, setProducts] = useState([]);
-
 	const dispatch = useDispatch();
 
+	const products = useSelector((state) => state.product.products);
 	const filters = useSelector((state) => state.filter.filters);
+	const search = useSelector((state) => state.filter.search);
 
 	const { brands, stock } = filters;
 
 	useEffect(() => {
-		fetch('http://localhost:5000/products')
-			.then((res) => res.json())
-			.then((data) => setProducts(data.data));
-	}, []);
+		dispatch(fetchProductData());
+	}, [dispatch, search]);
 
 	const activeClass = 'text-white  bg-indigo-500 border-white';
 
@@ -49,7 +48,7 @@ const Home = () => {
 				<button
 					title="Clear Filters"
 					onClick={() => dispatch(clearFilters())}
-					className={`border w-10 h-10 rounded-full font-semibold bg-red-400 text-white  `}>
+					className={`border w-9 h-9 rounded-full font-semibold bg-red-700 text-white  `}>
 					X
 				</button>
 				<div className="flex justify-end gap-5">

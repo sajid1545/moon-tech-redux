@@ -1,4 +1,9 @@
-import { CLEAR_FILTERS, TOGGLE_BRAND, TOGGLE_STOCK } from '../actionTypes/actionTypes';
+import {
+	CLEAR_FILTERS,
+	SEARCH_PRODUCTS,
+	TOGGLE_BRAND,
+	TOGGLE_STOCK,
+} from '../actionTypes/actionTypes';
 
 export const toggleBrand = (data) => {
 	return {
@@ -16,5 +21,12 @@ export const toggleStock = () => {
 export const clearFilters = () => {
 	return {
 		type: CLEAR_FILTERS,
+	};
+};
+
+export const searchProducts = (data) => {
+	return {
+		type: SEARCH_PRODUCTS,
+		payload: data,
 	};
 };
