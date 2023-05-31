@@ -22,7 +22,7 @@ const Home = () => {
 	let content;
 
 	if (products.length) {
-		content = products.map((product) => <ProductCard key={product.model} product={product} />);
+		content = products.map((product) => <ProductCard key={product._id} product={product} />);
 	}
 
 	if ((products.length && stock) || brands.length) {
@@ -39,7 +39,7 @@ const Home = () => {
 				}
 				return product;
 			})
-			.map((product) => <ProductCard key={product.model} product={product} />);
+			.map((product) => <ProductCard key={product._Id} product={product} />);
 	}
 
 	return (
