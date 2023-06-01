@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+import { AiOutlineEdit } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import fetchProductData from '../../redux/thunk/fetchProductData';
 import removeProductData from '../../redux/thunk/removeProductData';
 
@@ -68,8 +70,13 @@ const ProductList = () => {
 										<div class="text-left font-medium text-indigo-500">{price}</div>
 									</td>
 									<td class="p-2">
-										<div class="flex justify-center">
-											<button onClick={() => dispatch(removeProductData(_id))}>
+										<div class="flex justify-center gap-3 items-center">
+											<Link state={{ model, brand, price, status, _id }} to={'/dashboard/edit-product'}>
+												<button title="Edit">
+													<AiOutlineEdit className="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1" />
+												</button>
+											</Link>
+											<button title="Delete" onClick={() => dispatch(removeProductData(_id))}>
 												<svg
 													class="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1"
 													fill="none"

@@ -1,12 +1,12 @@
 import {
-  ADD_PRODUCT,
-  ADD_TO_CART,
-  LOAD_PRODUCT,
-  PRODUCT_LOADED,
-  REMOVE_FROM_CART,
-  REMOVE_PRODUCT,
+	ADD_PRODUCT,
+	ADD_TO_CART,
+	LOAD_PRODUCT,
+	PRODUCT_LOADED,
+	REMOVE_FROM_CART,
+	REMOVE_PRODUCT,
+	UPDATE_PRODUCT,
 } from '../actionTypes/actionTypes';
-
 
 export const loadProduct = (data) => {
 	return {
@@ -18,6 +18,13 @@ export const loadProduct = (data) => {
 export const addProduct = (product) => {
 	return {
 		type: ADD_PRODUCT,
+		payload: product,
+	};
+};
+
+export const updateProduct = (product) => {
+	return {
+		type: UPDATE_PRODUCT,
 		payload: product,
 	};
 };

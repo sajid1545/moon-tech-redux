@@ -23,7 +23,6 @@ const run = async () => {
 
 		app.get('/products', async (req, res) => {
 			const text = req.query.text;
-				console.log(text);
 			let query = {};
 
 			if (text.length) {
@@ -45,6 +44,15 @@ const run = async () => {
 			const product = req.body;
 
 			const result = await productCollection.insertOne(product);
+
+			res.send(result);
+		});
+
+		app.patch('/product/:id', async (req, res) => {
+			const id = req.params.id;
+			const product = req.body;
+			
+			const result = await productCollection.updateOne({ _id: ObjectId(id) }, { $set: product });
 
 			res.send(result);
 		});
